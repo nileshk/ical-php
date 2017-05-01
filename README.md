@@ -9,7 +9,7 @@ use Ical\Feed;
 use Ical\Component\Calendar;
 use Ical\Component\Event;
 
-// One feed (i.e. URL) can host more than one caldenar, lets create a feed
+// One feed (i.e. URL) can host more than one calendar, let's create a feed
 $feed = new Feed();
 
 // This calendar will contain our events
@@ -21,6 +21,7 @@ $event->lastModified(new DateTime('2015-01-05'));
 $event->between(new DateTime('2015-04-01'), new DateTime('2015-04-01'));
 $event->summary('Example of an event');
 $event->allDay(true);
+$event->url('http://example/events/123456');
 
 // Add this event to the calendar
 $calendar->addEvent($event);

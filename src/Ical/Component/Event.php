@@ -33,6 +33,7 @@ class Event extends AbstractComponent implements ComponentInterface, ComponentCo
     public $location;
     public $startDateFormat = DateTimeStamp::OUTPUT_TIMEZONE;
     public $endDateFormat = DateTimeStamp::OUTPUT_TIMEZONE;
+    public $url;
 
     public function __construct($uid, DateTime $dtstamp = null) {
         $this->uid = $uid;
@@ -131,6 +132,11 @@ class Event extends AbstractComponent implements ComponentInterface, ComponentCo
         return $this;
     }
 
+    public function url($url) {
+        $this->url = $url;
+        return $url;
+    }
+
     public function setDateFormat($dateFormat) {
         $this->startDateFormat = $dateFormat;
         $this->endDateFormat = $dateFormat;
@@ -170,6 +176,10 @@ class Event extends AbstractComponent implements ComponentInterface, ComponentCo
 
         if (null !== $this->location) {
             $this->addProperty(new Text('LOCATION', $this->location));
+        }
+
+        if (null !== $this->url) {
+            $this->addProperty(new Text('URL', $this->url));
         }
 
         if (DateTimeStamp::OUTPUT_NOTIME & $this->startDateFormat && DateTimeStamp::OUTPUT_NOTIME & $this->endDateFormat) {
